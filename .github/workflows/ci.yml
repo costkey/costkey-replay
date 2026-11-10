@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test on Node ${{ matrix.node-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ["20", "22", "24"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - run: npm ci
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: "1"
+      - name: Type check
+        run: npm run typecheck
+      - name: Test (real Chrome from the runner image)
+        run: npm test
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+      - name: Build
+        run: npm run build
+      - name: Pack smoke test
+        run: npm pack --dry-run
