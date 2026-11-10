@@ -54,7 +54,7 @@ ${rrweb}
     recordCanvas: false,
     collectFonts: false,
     checkoutEveryNms: 60000,
-    sampling: { mousemove: 100, scroll: 150, media: 800, input: "last" }
+    sampling: { mousemove: 50, scroll: 100, media: 800, input: "last" }
   });
   var timer = setInterval(flush, 500);
   addEventListener("pagehide", flush, true);
