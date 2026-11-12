@@ -71,7 +71,9 @@ Call `await CostKeyReplay.flush()` before a short-lived script exits.
 | Puppeteer | 22 and later (`launch`, `connect`) |
 | Node | 20 and later |
 
-Not yet: Playwright from Python, Java or .NET, Firefox and WebKit, and desktop (VNC) recording.
+For Playwright from Python, use [`costkey-replay`](https://github.com/costkey/costkey-replay-python) on PyPI.
+
+Not yet: Playwright from Java or .NET, Firefox and WebKit, and desktop (VNC) recording.
 
 ## Options
 
